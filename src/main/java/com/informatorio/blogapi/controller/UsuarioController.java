@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @RequestMapping("/api/v1/usuario")
@@ -28,6 +25,26 @@ public class UsuarioController {
     @GetMapping()
     public ResponseEntity<List<Usuario>> getUsuarios() {
         return new ResponseEntity<>(usuarioRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/filtrarPorCiudad")
+    public ResponseEntity<List<Usuario>> getFiltrarCiudad(@RequestParam String ciudad) {
+        List<Usuario> listaUsuariosCiudad = usuarioRepository.getUsuariosPorCiudad(ciudad);
+
+        if (listaUsuariosCiudad.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(listaUsuariosCiudad, HttpStatus.OK);
+    }
+
+    @GetMapping("/filtrarPorFecha")
+    public ResponseEntity<List<Usuario>> getFiltrarFecha(@RequestParam String fecha) {
+        List<Usuario> listaUsuariosFecha= usuarioRepository.getUsuariosPorFecha(fecha);
+
+        if (listaUsuariosFecha.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(listaUsuariosFecha, HttpStatus.OK);
     }
 
     @PostMapping()
@@ -118,4 +135,5 @@ public class UsuarioController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
