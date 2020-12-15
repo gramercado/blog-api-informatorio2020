@@ -18,6 +18,50 @@ public class Comentario {
     private String cuerpo;
 
     @ManyToOne
-    @JoinColumn(name = "autor", referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id")
     private Usuario autor;
+
+    @ManyToOne
+    @JoinColumn(name = "blog_id")
+    private Blog blogReferente;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getFechaDeCreacion() {
+        return fechaDeCreacion;
+    }
+
+    public void setFechaDeCreacion(Date fechaDeCreacion) {
+        this.fechaDeCreacion = fechaDeCreacion;
+    }
+
+    public String getCuerpo() {
+        return cuerpo;
+    }
+
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
+    }
+
+    public Usuario getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Usuario autor) {
+        this.autor = autor;
+    }
+
+    public Blog getBlogReferente() {
+        return blogReferente;
+    }
+
+    public void setBlogReferente(Blog blogReferente) {
+        this.blogReferente = blogReferente;
+    }
 }
