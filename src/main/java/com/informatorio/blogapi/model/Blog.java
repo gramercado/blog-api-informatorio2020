@@ -1,25 +1,31 @@
 package com.informatorio.blogapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.nio.MappedByteBuffer;
 import java.security.KeyStore;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+
 public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private Usuario autor;
 
-    @OneToMany(mappedBy = "blogReferente")
-    private List<Comentario> comentariosList;
+    @OneToMany(mappedBy = "blogReferente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comentario> comentariosList = new ArrayList<>();
 
     @Column(nullable = false)
     @NotBlank
@@ -36,6 +42,8 @@ public class Blog {
 
     @Column
     private boolean publicado;
+
+    //Getter y Setter
 
     public Long getId() {
         return id;
@@ -85,9 +93,7 @@ public class Blog {
         this.contenido = contenido;
     }
 
-    public Date getFechaDeCreacionBlog() {
-        return fechaDeCreacionBlog;
-    }
+    public Date getFechaDeCreacionBlog() { return fechaDeCreacionBlog; }
 
     public void setFechaDeCreacionBlog(Date fechaDeCreacionBlog) {
         this.fechaDeCreacionBlog = fechaDeCreacionBlog;
@@ -99,6 +105,21 @@ public class Blog {
 
     public void setPublicado(boolean publicado) {
         this.publicado = publicado;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Blog{");
+        sb.append("id=").append(id);
+        sb.append(", autor=").append(autor);
+        sb.append(", comentariosList=").append(comentariosList.toString());
+        sb.append(", titulo='").append(titulo).append('\'');
+        sb.append(", descripcion='").append(descripcion).append('\'');
+        sb.append(", contenido='").append(contenido).append('\'');
+        sb.append(", fechaDeCreacionBlog=").append(fechaDeCreacionBlog);
+        sb.append(", publicado=").append(publicado);
+        sb.append('}');
+        return sb.toString();
     }
 }
 

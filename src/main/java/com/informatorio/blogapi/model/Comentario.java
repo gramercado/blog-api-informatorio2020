@@ -17,13 +17,15 @@ public class Comentario {
     @Max(value = 200)
     private String cuerpo;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private Usuario autor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "blog_id")
     private Blog blogReferente;
+
+    // Getter y Setter
 
     public Long getId() {
         return id;

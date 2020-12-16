@@ -1,25 +1,26 @@
 package com.informatorio.blogapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler", "blogs", "comentarios"})
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "autor")
-    private List<Blog> blogs;
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private final List<Blog> blogs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "autor")
-    private List<Comentario> comentarios;
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comentario> comentarios = new ArrayList<>();
 
     @Column
     private String nombre;
@@ -48,6 +49,7 @@ public class Usuario {
     @Column
     private String pais;
 
+    // Getter y Setter
     public Long getId() {
         return id;
     }
@@ -56,12 +58,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public List<Blog> getBlogs() {
-        return blogs;
+    public void guardarBlog(Blog blogAgregado) {
+        this.blogs.add(blogAgregado);
     }
 
-    public void setBlogs(List<Blog> blogs) {
-        this.blogs = blogs;
+    public List<Blog> getBlogs() {
+        return blogs;
     }
 
     public List<Comentario> getComentarios() {
@@ -134,5 +136,23 @@ public class Usuario {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Usuario{");
+        sb.append("id=").append(id);
+        sb.append(", blogs=").append(blogs);
+        sb.append(", comentarios=").append(comentarios);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", apellido='").append(apellido).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", fechaDeAlta=").append(fechaDeAlta);
+        sb.append(", ciudad='").append(ciudad).append('\'');
+        sb.append(", provincia='").append(provincia).append('\'');
+        sb.append(", pais='").append(pais).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

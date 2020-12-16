@@ -47,7 +47,7 @@ public class UsuarioController {
         return new ResponseEntity<>(listaUsuariosFecha, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario nuevoUsuario) {
 
         nuevoUsuario.setFechaDeAlta(new Date());
