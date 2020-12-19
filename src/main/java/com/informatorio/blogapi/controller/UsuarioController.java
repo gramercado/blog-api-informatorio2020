@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @RequestMapping("/api/v1/usuario")
@@ -56,7 +57,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> modificarUsuario(@PathVariable Long id, @RequestBody @Valid Usuario usuarioNuevo) {
+    public ResponseEntity<?> modificarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioNuevo) {
         Usuario usuarioViejo;
         Optional<Usuario> usuarioONull = usuarioRepository.findById(id);
 
@@ -135,5 +136,4 @@ public class UsuarioController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

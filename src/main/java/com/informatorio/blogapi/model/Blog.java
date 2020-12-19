@@ -1,20 +1,17 @@
 package com.informatorio.blogapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.nio.MappedByteBuffer;
-import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
-
-public class Blog {
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler", "comentariosList"})
+public class Blog implements Comparable<Blog> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,8 +40,7 @@ public class Blog {
     @Column
     private boolean publicado;
 
-    //Getter y Setter
-
+//Getter y Setter
     public Long getId() {
         return id;
     }
@@ -121,7 +117,28 @@ public class Blog {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Blog)) return false;
+        Blog blog = (Blog) o;
+        return getPublicado() == blog.getPublicado() && getId().equals(blog.getId()) && getAutor().equals(blog.getAutor()) && Objects.equals(getComentariosList(), blog.getComentariosList()) && getTitulo().equals(blog.getTitulo()) && getDescripcion().equals(blog.getDescripcion()) && getContenido().equals(blog.getContenido()) && getFechaDeCreacionBlog().equals(blog.getFechaDeCreacionBlog());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getAutor(), getComentariosList(), getTitulo(), getDescripcion(), getContenido(), getFechaDeCreacionBlog(), getPublicado());
+    }
+
+    @Override
+    public int compareTo(Blog otroBlog) {
+        if (this.fechaDeCreacionBlog.after(otroBlog.fechaDeCreacionBlog)) {
+            return 1;
+        } else if (this.fechaDeCreacionBlog.before(otroBlog.fechaDeCreacionBlog)) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 }
-
-
-

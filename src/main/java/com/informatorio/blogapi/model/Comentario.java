@@ -1,7 +1,10 @@
 package com.informatorio.blogapi.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -14,7 +17,7 @@ public class Comentario {
     private Date fechaDeCreacion;
 
     @Column
-    @Max(value = 200)
+    @Size(min = 5, max = 200)
     private String cuerpo;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -25,8 +28,7 @@ public class Comentario {
     @JoinColumn(name = "blog_id")
     private Blog blogReferente;
 
-    // Getter y Setter
-
+// Getter y Setter
     public Long getId() {
         return id;
     }

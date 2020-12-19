@@ -49,7 +49,7 @@ public class Usuario {
     @Column
     private String pais;
 
-    // Getter y Setter
+// Getter y Setter
     public Long getId() {
         return id;
     }
