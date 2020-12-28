@@ -34,15 +34,15 @@ public class ComentarioController {
         return new ResponseEntity<>(comentarioRepository.findAll(), HttpStatus.OK);
     }
 
-    //@GetMapping("/filtrarPorBlog")
-    //public ResponseEntity<List<Comentario>> getFiltrarPorBlog(@RequestParam Long id) {
-    //    List<Comentario> listaComentarioBlog = ComentarioRepository.findComentarioByBlog(id);
+    @GetMapping("/filtrarPorBlog")
+    public ResponseEntity<List<Comentario>> getFiltrarPorBlog(@RequestParam Long blogId, @RequestParam Integer max) {
+        List<Comentario> listaComentarioBlog = comentarioRepository.findComentarioByBlog_Id(blogId, max);
 
-    //    if (listaComentarioBlog.isEmpty()) {
-    //        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //    }
-    //    return new ResponseEntity<>(listaComentarioBlog, HttpStatus.OK);
-    //}
+        if (listaComentarioBlog.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(listaComentarioBlog, HttpStatus.OK);
+    }
 
     @PostMapping()
     public ResponseEntity<?> crearComentario(@RequestBody Comentario nuevoComentario, @RequestParam Long autor, @RequestParam Long blog) {

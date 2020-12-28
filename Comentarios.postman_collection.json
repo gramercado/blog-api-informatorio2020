@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "f9908303-2e42-4919-94a1-45f902ed6e0b",
+		"name": "Comentarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Comentarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/comentario",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"comentario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIltrar Comentarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/comentario?blogid=1&max=3",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"comentario"
+					],
+					"query": [
+						{
+							"key": "blogid",
+							"value": "1"
+						},
+						{
+							"key": "max",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Comentarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cuerpo\": \"este blog es un desastre\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/comentario?autor=1&blog=1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"comentario"
+					],
+					"query": [
+						{
+							"key": "autor",
+							"value": "1"
+						},
+						{
+							"key": "blog",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Modificar Comentario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cuerpo\": \"Peor que un desastre xD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/comentario/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"comentario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Comentarios",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/comentario/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"comentario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

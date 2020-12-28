@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "e79fcd2e-8354-4f7c-b470-e2c7ed8c635a",
+		"name": "Usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/usuario",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario"
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuarios por Ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/usuario/filtrarPorCiudad?ciudad=resistencia",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario",
+						"filtrarPorCiudad"
+					],
+					"query": [
+						{
+							"key": "ciudad",
+							"value": "resistencia"
+						},
+						{
+							"key": "fecha",
+							"value": "2020-12-14",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuarios creados despues de una fecha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/usuario/filtrarPorFecha?fecha=2020-12-15",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario",
+						"filtrarPorFecha"
+					],
+					"query": [
+						{
+							"key": "ciudad",
+							"value": "resistencia",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "2020-12-15"
+						}
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Modificar datos triviales Usuario (N/F)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"graciela\",\r\n    \"apellido\": \"merrcadito\",\r\n    \"ciudad\": \"resistencia\",\r\n    \"provincia\": \"buenos aires\",\r\n    \"pais\": \"peronia 50\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/usuario/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario",
+						"1"
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH nuevo email",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/usuario/actualizarEmail?id=1&nuevoEmail=mauri@reemplazado.com",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario",
+						"actualizarEmail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "nuevoEmail",
+							"value": "mauri@reemplazado.com"
+						}
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH nueva password",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nuevaPassword\": \"111111111111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/usuario/actualizarPassword/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario",
+						"actualizarPassword",
+						"1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "nuevoEmail",
+							"value": "mauri@reemplazado.com",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Usuario por id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/usuario/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario",
+						"1"
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "POST nuevo usuario",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"jose\",\r\n    \"apellido\": \"mercado\",\r\n    \"email\": \"josemercado@gmail.com\",\r\n    \"password\": \"12333444444444\",\r\n    \"ciudad\": \"resistencia\",\r\n    \"provincia\": \"chaco\",\r\n    \"pais\": \"argentina\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/usuario",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"usuario"
+					]
+				},
+				"description": "Pide todos los usuarios desde la API"
+			},
+			"response": []
+		}
+	]
+}

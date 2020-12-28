@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "f8876fcf-aa84-4ec0-8066-4348bcaabd5a",
+		"name": "Blogs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Blogs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/blog",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog"
+					]
+				},
+				"description": "Trae todos los posts creados desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Blogs Contiene Palabra en Titulo (N/F)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/blog/filtrarPorPalabra?palabra=hola",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog",
+						"filtrarPorPalabra"
+					],
+					"query": [
+						{
+							"key": "palabra",
+							"value": "hola"
+						}
+					]
+				},
+				"description": "Trae todos los posts creados desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Blogs sin publicar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/blog//filtrarPorNoPublicado",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog",
+						"",
+						"filtrarPorNoPublicado"
+					]
+				},
+				"description": "Trae todos los posts creados desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Blogs No publicado",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/blog/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog",
+						"1"
+					]
+				},
+				"description": "Trae todos los posts creados desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "POST nuevo Blog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"hola soy un titulo\",\r\n    \"descripcion\": \"hola soy una descripcion\",\r\n    \"contenido\": \"hola soy un contenido un poco corto pero contenido al fin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/blog?autor=1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog"
+					],
+					"query": [
+						{
+							"key": "autor",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Trae todos los posts creados desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Blog por Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/blog/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog",
+						"1"
+					]
+				},
+				"description": "Trae todos los posts creados desde la API"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Modificar Blog",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Este es un nuevo titulo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/blog/1",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"blog",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
